@@ -1,0 +1,460 @@
+\documentclass{beamer}
+\usetheme{Ilmenau}
+\usecolortheme{seagull}
+\usepackage{multimedia}
+\usepackage{ragged2e}
+\usepackage{graphicx}
+\graphicspath{{F:/ppt/}}
+\definecolor{green}{rgb}{0.8,0.85,1}
+\addtobeamertemplate{navigation symbols}{}{\insertpagenumber}
+\date{}
+
+
+\begin{document}
+
+%\author[\textbf{Manoj TM, Sreedhar Sai Krishna EV, Tushara R and Mr.Chetan Adhikary Y}]
+%{\scriptsize \textbf{Presented by} \\ 
+%	\begin{columns}
+%		\begin{column}{2.5cm}
+%		\centering \textbf{Manoj TM}
+%		\\USN: 1AM11EC044
+%		\end{column}
+%	
+%	\begin{column}{1.5cm}
+%			\centering	\textbf{Tushara R}
+%			\\USN: 1AM11EC094
+%		\end{column}
+%		
+%	\end{columns}
+%\vspace*{7mm} 
+%\and 
+%\scriptsize \textbf{Under the guidance of} \\ 
+%	\begin{columns}
+%	\begin{column}{12cm} 
+%	\centering {
+%		\textbf{\\Mr. Chetan Adhikary Y}
+%		\\Assistant Professor
+%		\\Dept. of Electronics and Communication
+%		\\AMC Engineering College }
+%	\end{column}
+%	\end{columns}
+%}
+
+%\title[\tiny Dept. of ECE, AMCEC]{\scriptsize \large \textbf{\color{brown} Identification and Evaluation of Effective Channel Coding Techniques to overcome Channel Propagation Abnormalities}}
+%\setbeamertemplate{frametitle}[default][center]
+
+
+%\begin{frame}
+%\titlepage
+%\end{frame}
+
+\begin{frame}{\scriptsize \LARGE \centering \textbf{Abstract}}
+	\begin{block}{}
+	\begin{center}
+		 \justify The project here presents the essence of error free transfer of message between two nodes.To make the communication error free, Error Control and Coding (ECC) is used, which is achieved by using encoder and decoder pair(codec). Thus the work here is to concentrate on channel encoding and decoding techniques.Errors caused in the channel are because of  AWGN (Additive White Gaussian Noise), multipath fading, interference and so on. So, to measure the errors BER(Bit Error Rate)is used, which is dependent on SNR(Signal to Noise Ratio). In first phase of the project channel coding techniques are tested for their performance with respect to BER, by simulinting their models in Simulink and BERTool. And in next phase channel coding techniques are simulated in Xilinx and ModelSim, by preparing the verilog codes nad these codes are made to run on FPGA.
+	\end{center}
+	\end{block}
+\end{frame}
+
+
+\begin{frame}{\scriptsize \LARGE \centering \textbf{Introduction}}
+\begin{block}{\textbf{Communication}}
+		\begin{itemize}
+		\pause 
+		\item Transfer of Data in a medium
+		\pause
+		\item Transmission Channel 
+		\pause
+		\item Data Corruption
+				
+				\end{itemize}	
+	\end{block}	
+\end{frame}
+
+
+\begin{frame}{\scriptsize \LARGE \centering \textbf{Introduction}}	
+	
+	\begin{center}
+	\begin{figure}
+	
+	\includegraphics[scale=.5]{comn}
+	\caption{Block Diagram of Communication System}
+	\end{figure}
+	\end{center}
+		\begin{itemize}	
+		\pause
+			\item Channel Encoder Decoder Pair
+			
+		\end{itemize}	
+	
+\end{frame}
+
+
+\begin{frame}{\scriptsize \LARGE \centering \textbf{Introduction}}
+			\begin{block}{\textbf{Channel Coding}}
+				\begin{itemize}
+					\pause 
+					\item Inevitable Existence of Errors on any given Communication Channel
+				\pause
+					\item Channel Noises
+				\end{itemize}
+			\end{block}		
+\end{frame}
+
+
+\begin{frame}{\scriptsize \LARGE \textbf{Error Control and Coding}}
+			
+				\begin{itemize}
+					\pause 
+					\item Detection and Correction of Codes
+					\pause
+					\item To Achieve Reliable Communication
+					\pause 
+					\item Types of Error Correction Mechanisms
+					\begin{itemize}
+					\pause
+					\item Reverse Error Correction  
+					\pause
+					\item Forward Error Correction
+					\end{itemize}
+					\pause
+					\item Types of Codes
+					\begin{itemize}
+					\pause
+					\item Block Codes 
+					\pause
+					\item Convolutional codes
+					\end{itemize}
+					\end{itemize}
+		\end{frame}
+
+
+\begin{frame}{\scriptsize \LARGE \centering \textbf{Error Control \& Coding}}
+	\begin{block}{\textbf{Hamming Codes}}
+		\begin{itemize}
+		\pause
+			\item First Class of Linear Block Codes 
+			\pause
+			\item FEC Achieved by Using Parity Bit Mechanism
+			\pause
+			\item Multiple Bit Error Detection 
+			\pause
+			\item Single Bit Error correction
+			\pause
+			\item Table Driven Decoding
+		\end{itemize}
+	\end{block}
+\end{frame}
+
+
+\begin{frame}{\scriptsize \LARGE \centering \textbf{Error control \& Control}}
+\textbf{Hamming Codes}
+\begin{columns}
+\begin{column}{6cm}
+		\begin{itemize}
+		 	\pause
+		 	\item (n,k)Hamming Code
+		 	\pause
+		 	\item Code length:n=$2^m-1$
+		 	\item No. of information symbols:k=$2^m-m-1$
+		 	\item m$>$=3 : Hamming Distance=n-k
+		 	\pause
+		 	\item Syndrome vector 'S'
+		 	\pause
+		 	
+		\end{itemize}
+		\end{column}
+		\begin{column}{5cm}
+		\begin{center}
+		\includegraphics[scale=0.23]{hamming}
+		\end{center}
+		
+		\end{column}
+		\end{columns}
+		%\end{block}
+\end{frame}
+
+
+\begin{frame}{\scriptsize \LARGE \centering \textbf{Error Control \& Coding}}
+	\begin{block}{\textbf{Convolutional Codes}}
+		\begin{itemize}
+			\pause
+			\item Non Linear Block Codes 
+			\pause
+			\item Contains Memory
+			\pause
+			\item Capable of Multiple Error Detection \& Correction 
+			\pause
+			\item Employs Trellis Structure
+			\pause
+\end{itemize}			
+	\end{block}
+\end{frame}
+
+
+\begin{frame}{\scriptsize \LARGE \centering \textbf{Error Control \& Coding}}
+\begin{block}{\textbf{Convolutional Codes}}
+\begin{columns}
+\begin{column}{5cm}
+	\includegraphics[scale=0.3]{encoder}
+\end{column}
+	\begin{column}{5cm}
+		\begin{itemize}
+\pause
+\item (n,k,m)Convolutional Codes
+\pause
+\item no of input bits k
+\item no of encoded bits n
+\item memory order m
+\item code rate= k/n
+		\end{itemize}
+	\end{column}
+\end{columns}
+\end{block}	
+\end{frame}
+
+
+\begin{frame}{\scriptsize \LARGE \centering \textbf{Error Control \& Coding}}
+\textbf{Viterbi Decoding}
+\begin{columns}
+\begin{column}{5cm}	
+	\begin{itemize}
+	\pause
+		\item Maximum Likelihood  Decoding Algorithm 
+		\pause
+		\item Trellis Structure
+		
+		\begin{itemize}
+		\pause
+		\item Maximum Likelihood Path(Codeword)
+		\pause
+		\item Path Metric and Branch Metric
+		\pause
+		\item Bit Metrics
+		
+	\end{itemize}
+		
+	\end{itemize}
+	\end{column}
+	\begin{column}{7cm}	
+	\begin{center}
+	\includegraphics[scale=.3]{decotrellis}
+	\end{center}
+	\end{column}
+	\end{columns}
+%	\end{block}
+\end{frame}
+
+
+\begin{frame}{\scriptsize \LARGE \centering \textbf{Tools Used}}
+	
+	\begin{itemize}
+	\pause
+
+
+\item \textbf{Software Tools}
+\begin{itemize}
+		\item MATLAB
+		\begin{itemize}
+		\pause
+	\item Simulink
+	\pause
+	\item BERTOOL
+	\end{itemize}
+	\pause		
+		\item XILINX 9.1 ISE
+\pause
+		\item ModelSim
+
+	\end{itemize}
+	\pause
+\item \textbf{Hardware Tools}
+	\begin{itemize}
+	\pause
+	\item FPGA
+	\end{itemize}
+	\end{itemize}
+	\end{frame}
+
+\begin{frame}{\scriptsize \LARGE \centering \textbf{Software Tools Used}}
+\begin{block}{\textbf{Simulink}}
+\begin{center}
+\includegraphics[scale=.17]{sim}
+\end{center}
+\begin{itemize}
+\item Graphical Programming Environment
+\item Libraries of Functional Blocks
+\item Model Analysis Tools
+\item Generating Code(C,C++,HDL)
+\end{itemize}	
+\end{block}
+\end{frame}
+
+\begin{frame}{\scriptsize \LARGE \centering \textbf{Software Tools Used}}
+\begin{block}{\textbf{BER Tool}}
+ \begin{center}
+  \includegraphics[scale=.2]{bertool}
+ \end{center}
+ \begin{itemize}
+ \item Bit Error Rate Analysis
+ \item Theoretical Simulation 
+ \item Monte-Carlo Simulations
+ \end{itemize}
+ \end{block}
+\end{frame}
+
+\begin{frame}{\scriptsize \LARGE \centering \textbf{Software Tools Used}}
+\begin{block}{\textbf{XILINX}}
+\begin{center}
+\includegraphics[scale=.2]{xilinx}
+\begin{itemize}
+\item HDL Design Analysis and Synthesis
+\item Integration With ModelSim
+\item Behavioural Verification
+\item FPGA Synthesis
+\end{itemize}
+\end{center}
+\end{block}
+\end{frame}
+
+\begin{frame}{\scriptsize \LARGE \centering \textbf{Software Tools Used}}
+\begin{block}{\textbf {ModelSim}}
+\begin{center}
+\includegraphics[scale=.22]{model}
+\end{center}
+\begin{itemize}
+\item Implements Verilog and System Verilog Languages
+\item Test Bench Development
+\end{itemize}
+
+\end{block}
+\end{frame}
+
+
+\begin{frame}{\scriptsize \LARGE \centering \textbf{Hardware Tools Used}}
+\begin{block}{\textbf{FPGA}}
+\begin{center}
+\includegraphics[scale=.15]{fpga}
+\end{center}
+\begin{itemize}
+\item Contains an array of programmable logic blocks. 
+\item Netlist can be generated.
+\item It has a serial interface called JTAG.
+\end{itemize}
+
+\end{block}
+\end{frame}
+
+\begin{frame}{\scriptsize \LARGE \centering \textbf{Implementation of Hamming Codes}}
+\begin{center}
+	\includegraphics[scale=.4]{hamm}
+\end{center}
+\begin{itemize}
+\item Hamming code:(7,4)
+	\item Modulation: BPSK 
+\item Channel:AWGN
+\end{itemize}
+\end{frame}
+
+\begin{frame}{\scriptsize \LARGE \centering \textbf{Implementation of Convolutional Codes}}
+\begin{center}
+	\includegraphics[scale=.4]{vit}
+\end{center}
+\begin{itemize}
+	\item Convolution code :(7,[171 133],171)
+	\item Modulation: BPSK
+	\item Channel:AWGN
+\end{itemize}
+\end{frame}
+
+\begin{frame}{\scriptsize \LARGE \centering \textbf{Results and Discussions}}
+\textbf{Simulation Results of Hamming Codes}
+\begin{center}
+\includegraphics[scale=.5]{g}
+\end{center}
+\end{frame}
+
+\begin{frame}{\scriptsize \LARGE \centering \textbf{Results and Discussions}}
+\textbf{Simulation Results of Convolutional Codes}
+\begin{center}
+\includegraphics[scale=.4]{viter}
+\end{center}
+\end{frame}
+
+\begin{frame}{\scriptsize \LARGE \centering \textbf{Results and Discussions}}
+\textbf{Comparative Analysis of BER for Hamming and Convolutional Codes}
+\begin{columns}
+\begin{column}{7cm}
+\begin{center}
+\begin{figure}
+\includegraphics[scale=.3]{compare}
+\caption{where, Green-Hamming and Red-Convolution}
+\end{figure}
+\end{center}
+\end{column}
+\begin{column}{4cm}
+\begin{center}
+\begin{figure}
+\includegraphics[scale=.38]{tab}
+\caption{BER values of Hamming and Convolutional Coding}
+\end{figure}
+\end{center}
+\end{column}
+\end{columns}
+\begin{itemize}
+\item X-axis:Eb/N0, Y-axis:BER 
+\item Modulation:BPSK, Channel Model: AWGN
+\end{itemize}
+%\end{block}
+\end{frame}
+
+\begin{frame}{\scriptsize \LARGE \centering \textbf{Results and Discussions}}
+\textbf{BER Comparison for Modulation Techniques}
+\begin{center}
+\includegraphics[scale=.2]{bpsk}
+\end{center}
+\begin{itemize}
+\item In a limited bandwidth channel, BER increases with the bit rate.
+\item BER of BPSK and QPSK are almost same.
+\item BPSK is chosen for the simplicity in circuit.
+\end{itemize}
+\end{frame}
+
+\begin{frame}{\scriptsize \LARGE \centering \textbf{Conclusion}}
+\begin{itemize}
+\item BER and SNR Inversely Proportional 
+\item The Simulation Results Show Convolutional Codes Perform Better Than Hamming Codes
+\item BER is Dependent on Modulation Techniques
+\end{itemize}
+\end{frame}
+
+\begin{frame}{\scriptsize \LARGE \centering \textbf{Future Scope}}
+\begin{itemize}
+\item The Work Can be Further Extended on Rayleigh and Ricean Channel Models
+\item Constructing Adaptive Channel Encoder and Decoders
+\item SDR - Software Defined Radio
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}{\scriptsize \LARGE \centering \textbf{References}}	
+	\begin{block}{}	
+		\scriptsize 
+		\begin{thebibliography}{50}
+		\bibitem{Gupta} Prakash C.Gupta. \textsl{"Data Communications"},
+Prentice-Hall of India pvt. ltd.,New Delhi,2002.
+\bibitem{Lin} Shu Lin / Daniel J. Costello,Jr. \textsl{"Error Control Coding:Fundamentals and Applications"},Prentice-Hall, Inc. Englewood Cliffs,New Jersey 07632,1983.
+\bibitem{Haykin} Simon Haykin. \textsl{"Communication Systems"},John Wiley and Sons,Inc. New York,2000.
+\bibitem{Kulkarni}Jayshree S. Nandaniya,Nilesh B. Kalani,Dr.G.R.Kulkarni. \textsl{"Comparative Analysis of Different Channel Coding Techniques"},IRACST – International Journal of Computer Networks and Wireless Communications (IJCNWC), vol.4,No.2,April 2014.
+\bibitem{Vishwajeet} Himanshu Saraswat, Govind Sharma Sudhir Kumar Mishra and Vishwajeet. \textsl{"Performance Evaluation and Comparative Analysis
+of Various Concatenated Error Correcting Codes Using BPSK Modulation for AWGN Channel"},International Journal of Electronics and Communication Engineering.
+ISSN 0974-2166 Volume 5, Number 3 (2012), pp. 235-244,International Research Publication House.
+
+\end{thebibliography}
+\end{block}
+\end{frame}
+
+
+
+\end{document}
+

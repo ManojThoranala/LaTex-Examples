@@ -1,0 +1,164 @@
+\documentclass[conference]{IEEEtran}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{caption}
+\usepackage{refstyle}
+\usepackage[utf8]{inputenc}
+\usepackage{fullpage}
+\graphicspath{{F:/Fig/}}
+\begin{document}
+\title{Implementation of Hamming codes and convolution codes in Simulink}
+\author
+{\IEEEauthorblockN{Manoj TM \\(1AM11EC044)}
+\IEEEauthorblockA{Dept. of ECE\\
+AMC Engineering College\\
+Bangalore-83\\
+manojthoranala@gmail.com}
+\and
+
+\IEEEauthorblockN{Shreedhar Saikrishna EV \\(1AM11EC085)}
+\IEEEauthorblockA{Dept. of ECE\\
+AMC Engineering College\\
+Bangalore-83\\
+krishnasai.840@gmail.com}
+
+\and
+\IEEEauthorblockN{Tushara R \\(1AM11EC094)}
+\IEEEauthorblockA{Dept. of ECE\\
+AMC Engineering College\\
+Bangalore-83\\
+tushararmsh1@gmail.com}
+\and
+\IEEEauthorblockN{Chetan Adhikary Y }
+\IEEEauthorblockA{Assistant Professor\\
+Dept. of ECE\\
+AMC Engineering College\\
+Bangalore-83\\
+chetanadhikary@gmail.com}
+}
+
+
+\maketitle
+\begin{abstract}
+When the data is being transmitted into channel due to noise and other perturbations of channel, errors are introduced in data. These errors can be minimised by using effective channel coding techniques.We consider Hamming codes and Convolution codes, where Hamming code is an error-correction code that can be used to detect single and double-bit errors and correct single-bit errors that can occur when binary data is transmitted from one device into another. Hamming codes for FEC use a "block parity" mechanism that can be inexpensively implemented. Convolution Encoding with Viterbi decoding is a powerful FEC technique that is particularly suited to a channel in which the transmitted signal is corrupted mainly by AWGN. The work presents the simulation of performance of hamming and convolution codes. The BERTOOL in addition with simulink is used to obtain graphical analysis of system performance.
+\\Keywords: Additive White Gaussian Noise (AWGN), Forward Error Correction (FEC), Error Control code (ECC), Bit Error Rate(BER).
+\end{abstract}
+
+\section{Introduction}
+In recent years, there has been an increasing demand for efficient and reliable digital data transmission. A merging of communications and computer technology is required in the design of these systems. A major concern is to control the errors for reliable reproduction of data. The basic communication block has information source, source encoder, channel encoder, modulator,transmitter transmission Channel(where error gets introduced), receiver, channel decoder, source decoder, demodulator, destination. Topic here is to design and implement both channel encoders and channel decoders with minimum probability of decoding error. AWGN is Additive White Gaussian Noise Channel. AWGN channel has constant spectral density.There are two different types of codes in common use today, block codes and convolution codes. A subclass of all block codes, the linear block codes are considered. Since in the present digital computers and digital data communication systems, information is coded in binary digits "0" or "1" (linear block code with symbols). Hamming code is an example for FEC techniques. Convolution coding is a popular error-correcting coding method used in digital communications. A message is convoluted, and then transmitted into a noisy channel. The Viterbi algorithm tracks down the most likely state sequences the encoder went through in encoding the message, and uses this information to determine the original message. The  functional blocks in simulink are cascaded according to the design and simulated for further analysis. The simulation results obtained are compared with the corresponding Bit Error Rate for both the Channel Coding Techniques.\\
+BER is the error per unit time. BER is most affected by SNR, if SNR increases BER decreases. During digital data transmission and storage operations, performance criterion is commonly determined by BER.
+\section{Implementation of coding techniques in wireless communication}
+Communication model is implemented in Simulink. AWGN is commonly used to simulate background noise of the channel under study, in addition to multipath, terrain blocking, interference, ground clutter and self interference that modern radio systems encounter in terrestrial operation.There are different types of modulation like BPSK, QPSK, 16-PSK, 32-PSK. QAM etc. Each modulation technique has its own error function, so the performance of modulation technique is different at the time when noise is present. But high data rate transmission in limited bandwidth increase the BER.If the communication area is not larger than QAM technique is used, but in case of larger area the QPSK technique is more efficient than the QAM. In QPSK two successive bits are combined reducing the bit  rate or signaling rate and also bandwidth of the channel which is a main resource of communication system. Combination of two bits creates for distinct symbols [5]. QPSK requires less bandwidth than BPSK to be transmitted for same length of
+data. BER of BPSK and QPSK is almost same.The Error rate calculation block compares the input
+data and data received after demodulation and calculates the error rate. The display will show the BER at the end of simulation. The  BER tool is used to plot the graph.
+
+\section{Hamming codes}
+ First class of linear codes devised for error correction are Hamming codes. They can detect single and double bit errors and correct single bit errors that can occur when binary data is transmitted from host to destination through the channel. Hamming codes provide FEC using block parity mechanism which is inexpensive implementation. Hamming codes can correct one error and is capable of detecting two errors as mentioned above but it cannot do both simultaneously. This is achieved by using more than one parity bit each computed on different combination of bits in the data.\\
+ \\
+Theorem: Let S be a set of code words and let h be the minimum Hamming distance between any two code words in S. then It is possible to detect any number of errors less than h and It is possible to correct any number of errors less than h/2.\\
+Consider a (n, k, m) hamming code\\
+where,\\   
+$ Code length : n = 2^{(m -1)} $\\
+$ No. of information symbols : k = 2^m - m -1 $\\        
+$ No. of parity check symbols : m = n-k $\\     
+\\ 
+Assume we are transmitting code words of length k then Hamming code Sends a logarithmic number l additional bits per word, called the check bits and allows one error to be corrected for each block (of k + l bits) transmitted.The Hamming code can be applied to data units of any length. It uses the relationship between data and redundancy bits discussed above, and has the capability of correcting single-bit errors. For example, a 7-bit ASCII code requires four redundancy bits that can be added at the end of the data unit or interspersed with the original data bits to form the (11,7,1)Hamming code.\\
+\begin{figure}[h]
+\includegraphics[scale=0.485]{hamm}
+\caption{Simulink Implementation of Hamming code}
+\label{fig:hamm}
+\end{figure}\\
+The hamming code design provides two modules hamming encoder and decoder to implement the ECC functionality. The data input  is combined with generator parity bits at encoder level the resulting code words are transmitted through the channel to the hamming decoder module for decoding just before reaching its destination block. The hamming decoder module generates a
+syndrome vector to determine if there is any error in the received code word. \\
+Decoding can be accomplished in the following manner:\\
+1. If the syndrome S is zero, then there is no error in received data bits.\\
+2.If  S is non-zero and it contains odd number of one's, then the error in data received is single error. The error pattern that corresponds to S is added to the received vector for error correction.\\
+3. If S is non-zero and it contains even number of one's, then it is the error pattern which is not correctable.       
+\section{Convolution Coding }
+A convolution code is a type of error-correcting code that generates parity symbols via a sliding application of a Boolean polynomial function to a data stream. The sliding application represents the convolution of the encoder over the data, which gives rise to the term convolution coding. The message is convoluted and then transmitted into noisy channel. This convolution operation encodes some redundant information into the transmitted signal, thereby improving the data capacity of the channel. The Viterbi algorithm is a popular method used to decode convolutional coded messages. Unlike block codes, convolution codes are generated over a span of data bits. The encoder contains memory and the n encoder outputs at any given time unit depend not only on the k input at that time unit but also on m previous input blocks. An (n,k,m) convolution code can be implemented with a k-input, n-output linear sequential circuit with input memory m. A convolution encoder consists of shift registers, EXOR gates which generate output bits for each input bit. A Convolution Encoder accepts an input stream of message and generates encoded output streams to be transmitted. In this process for one input bit the encoder generates more than one output bits and these redundant symbols in output bit pattern makes the transmitted data more immune to the noise in the channel. The redundant bits help to decide and correct the errors in received pattern. The rate of the convolution encoder is the number of output bits generated for number of input bits. This is called coding rate of the encoder.\\
+Code Trellis:\\
+The convolution Encoding can be done using three different techniques as shown below.\\
+1.Code tree\\
+2.Code trellis\\
+3.State diagram\\
+Trellis diagrams are messy but generally preferred over both the tree and the state diagrams because they represent linear time sequencing of events. The x-axis is discrete time and all possible states are shown on the y-axis.
+We move horizontally through the trellis with the passage of time. The trellis diagram is drawn by lining up all the possible states in the vertical axis. Then we connect each state to the next state by the allowable code words for that state.
+
+\section{Viterbi Decoding}
+Although convolution encoding is a simple procedure, decoding of a convolution code is much more complex task. Viterbi decoding is an optimal (in a maximum-likelihood sense) algorithm for decoding of a convolution code. Its main drawback is that the decoding complexity grows exponentially with the code length. So, it can be utilized only for relatively short codes. The Viterbi algorithm works by forming trellis structure, which is eventually traced back for decoding the received information. It reduces the computational complexity by using simpler trellis structure. The Viterbi Decoder is used in many FEC applications and in systems where data are transmitted and subject to errors before reception.Viterbi decoders are based on the basic algorithm which comprises of minimum path and minimum distance calculation and retracing the path.\\
+The Viterbi algorithm:\\
+Step 1. Beginning at time j=m, compute the partial metric for the single path entering each state. Store the path and its metric for each state.\\                                                                                                                             
+Step 2. Increase j by 1. Compute the partial metric for all paths entering a state by adding the branch metric entering that state to the metric of the connecting survivor at the preceding time unit. For each state, store the path with the largest metric, together with its metric, and eliminate all other paths.\\                                                                                                                            
+Step 3. If j < L + m, repeat step 2. Otherwise, stop.\\ 
+\begin{figure}[h]
+\includegraphics[scale=0.485]{vit}
+\caption{ Block diagram in simulink for convolution coding and Viterbi decoding}
+\label{fig:vit}
+\end{figure}\\
+\section{Software Tools Used}
+The simulation of both Hamming and Convolution codes are obtained with the software tool Simulink and BER tool,(Matlab).
+\\Simulink: Data flow graphical programming language tool for modelling, simulating and analysing multi domain dynamic systems. 
+\\Matlab: It is a multi paradigm numerical computing environment and fourth generation programming language.
+\\BERTOOL:BERTool is a bit error rate analysis application for analyzing communication systems' bit error rate (BER) performance.
+\section{Conclusion}
+The BER value of the
+wireless medium is high, so sometimes the information is lost due to high BER. So BER is key parameter for wireless communication. Relation between signal and noise is
+described with SNR (signal-to-noise ratio). There are two parameters which affects SNR:\\
+Eb = Error Function.\\
+No= Noise power spectral density.\\
+The results carry out a comparison of error rate performance of the coding schemes.Eb/No ratio is taken in X-axis and BER is taken in Y-axis.The simulation results shows that performance of (poly2trellis(7, [171 133]))convolution coding technique is better than that of (11,7,1) hamming codes.\\ 
+\begin{figure}[h]
+\includegraphics[scale=0.56]{compare}
+\caption{Comparative analysis of BER for hamming and convolution coding techniques}
+\label{fig:compare}
+\end{figure}
+\begin{table}[h]
+\begin{tabular}{| l | c | l |}
+\hline
+Eb/No & Hamming & Convolutional\\
+\hline
+1 & 0.149 & 0.195\\
+2 & 0.115 & 0.125\\
+3 & 0.093 & 0.035\\
+4 & 0.064 & 0.009\\
+5 & 0.043 & 0\\
+6 & 0.030 & 0\\
+7 & 0.020 & 0\\
+8 & 0.010 & 0\\
+9 & 0.006 & 0\\
+10 &0.002 & 0\\
+\hline
+\end{tabular}
+\caption{Comparitive Analysis Of Error Probability for Hamming codes and Convolution codes.}
+\end{table}\\
+\\
+\section{Future scope}
+This work can be extended to estimating the performance of error correcting codes in Rayleigh and Rician fading channels. And implementing these error correcting codes on FPGA to analyse performance.Other error correcting codes can also be simulated to check their error correcting.
+
+
+
+
+
+\begin{thebibliography}{50}
+\bibitem{Gupta} Prakash C.Gupta. \textsl{"Data Communications"},
+Prentice-Hall of India pvt. ltd.,New Delhi,2002.
+\bibitem{Lin} Shu Lin / Daniel J. Costello,Jr. \textsl{"Error Control Coding:Fundamentals and Applications"},Prentice-Hall, Inc. Englewood Cliffs,New Jersey 07632,1983.
+\bibitem{Haykin} Simon Haykin. \textsl{"Communication Systems"},John Wiley and Sons,Inc. New York,2000.
+\bibitem{Kulkarni}Jayshree S. Nandaniya,Nilesh B. Kalani,Dr.G.R.Kulkarni. \textsl{"Comparative Analysis of Different Channel Coding Techniques"},IRACST – International Journal of Computer Networks and Wireless Communications (IJCNWC), vol.4,No.2,April 2014.
+\bibitem{Vishwajeet} Himanshu Saraswat, Govind Sharma Sudhir Kumar Mishra and Vishwajeet. \textsl{"Performance Evaluation and Comparative Analysis
+of Various Concatenated Error Correcting Codes Using BPSK Modulation for AWGN Channel"},International Journal of Electronics and Communication Engineering.
+ISSN 0974-2166 Volume 5, Number 3 (2012), pp. 235-244,International Research Publication House.
+\bibitem{Bahel} Jagpreet Singh , Dr. Shalini Bahel. \textsl{"Comparative Study of Data Transmission Techniques of Different Block Codes over AWGN Channel using Simulink"},International Journal of Engineering Trends and Technology (IJETT) – Volume 9 Number 12 - Mar 2014.
+\bibitem{Rashmi v} Nagaraj H Nemagoudar, Aruna Rashmi V.
+\textsl{"HDL Implementation of Hamming Code Encoder and Decoder"}, March 2014
+\bibitem{Salehi} Proakis J, Salehi.\textsl{"Fundamental of Communication
+Systems"},International Edition,2004.
+\bibitem{Khan}Mahe Jabeen, Salma Khan. \textsl{"Design of Convolution Encoder and Reconfigurable Viterbi Decoder"},International Journal of Engineering and Science, Vol. 1, Issue 3 (Sept 2012), PP 15-21.
+\end{thebibliography}
+
+
+
+
+
+\end{document}

@@ -1,0 +1,201 @@
+\documentclass[14pt]{report}
+\usepackage{siunitx}
+\usepackage{pdfpages}
+\usepackage{fancyhdr}
+\usepackage{pslatex}
+\usepackage{mathptmx}
+\usepackage{titlesec}
+\usepackage{lipsum}
+\usepackage[procnames]{listings}
+\usepackage{color}
+\usepackage{url}
+\usepackage{csquotes}
+\usepackage{longtable}
+\usepackage{graphicx}
+\graphicspath{{F:/report/}}
+\fancyhf{}
+\pagestyle{fancy}
+\lhead{PROJECT TITLE}
+\lfoot{FOOTER}
+\rfoot{\thepage}
+
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+\linespread{1.5}
+
+
+\titleformat{\chapter}[display]{\normalfont\LARGE\bfseries}{\hfill \chaptertitlename\ \thechapter}{18pt}{\Huge \centering}
+\titleformat{\section}{\normalfont\Large\bfseries}{\thesection}{1em}{}
+
+
+\begin{document}
+%\frontmatter
+
+
+\addcontentsline{toc}{chapter}{ABSTRACT}
+\chapter*{ABSTRACT}
+\thispagestyle{plain}{
+\pagenumbering{roman}
+\paragraph{}Paragraph1
+\paragraph{} Paragraph2}
+\newpage
+\addcontentsline{toc}{chapter}{Acknowledgement}
+\begin{center}
+\textbf{\Huge ACKNOWLEGEMENT}
+\end{center}
+\thispagestyle{plain}{
+\paragraph{} A Project work is team effort of all individuals and it cannot be accomplished by an individual all by him. We are grateful to the Almighty and a number of individuals whose professional guidance, assistance and encouragement have made it a pleasure endeavor to undertake this project.
+\paragraph{} We take this opportunity to express our profound gratitude to our principal \textbf{Person NAme} for his constant support and encouragement.
+\paragraph{} We are grateful to our Head of the Department \textbf{Person Name}. Her/His timely guidance and knowledge impartment has made this project a reality.
+\paragraph{} We are grateful to be guided by \textbf{Person Name}, Assistant Professor. We also thank him for his unfailing encouragement and suggestions given to us in the course of our project.
+\paragraph{} We are also indebted to all the staff members of the Department of Electronics and Communication Engineering for their constant support and encouragement.
+\begin{flushright}
+NAME1\\
+NAME2\\
+NAME3\\
+\end{flushright}
+                   
+}
+
+	{\pagestyle{plain}
+	
+		\tableofcontents
+		\cleardoublepage
+	
+		\addcontentsline{toc}{chapter}{LIST OF FIGURES}
+		\listoffigures
+		\cleardoublepage}
+
+\chapter{Introduction}
+\setcounter{page}{1}
+\pagenumbering{arabic}
+\thispagestyle{fancy}{
+
+\paragraph{} paragraph \ref{fig:comblk}.
+
+\begin{figure}[ht]
+\centering
+\includegraphics[scale=0.8]{comn}
+\caption{Basic communication System}
+\label{fig:comblk}
+\end{figure}
+\section{Section Name}
+\paragraph{} paragraph
+\section{Section Name}
+\paragraph{}paragraph
+
+\begin{figure}[ht]
+\centering
+\includegraphics[scale=0.9]{channel}
+\caption{Typical channel}
+\label{fig:chan}
+\end{figure}
+\subsection{Channel Characteristics}
+\begin{itemize}
+\item Item1
+\item Item2
+\item Item3
+\end{itemize}
+\subsection{SubScetion Name}
+\paragraph{}paragraph\\
+\begin{enumerate}
+\item Numbered Item1
+\item Numbered Item2
+\end{enumerate}
+\paragraph{} Pragrapgh $(Math Formula)$ Text
+\paragraph{}Pragrapgh
+
+\section*{Section Name}       
+\subsection{SubSection Name}
+\paragraph{}Paragraph
+\textbf{text}
+\paragraph{}Paragraph
+\paragraph{} Paragraph\\
+		$Math Formula 1\\
+		$Math Formula 2$\\
+\textbf{White}\\
+\paragraph{} Paragraph\\
+
+\begin{figure}[ht]
+\centering
+\includegraphics[scale=.4]{image}
+\label{fig:image}
+\caption{Figure Caption}
+\end{figure}\\
+\textbf{Text}\\
+
+\begin{figure}[ht]
+\centering
+\includegraphics[scale=.6]{image}
+\label{fig:image}
+\caption{Figure Caption}
+\end{figure}
+\subsection{SubSection Name}
+\paragraph{} Pragraph
+\subsection{SubSection Name}
+\paragraph{} Pragraph
+
+\section{Section Name}
+\paragraph{} Pragraph
+
+\chapter{Chapter Name}
+\thispagestyle{fancy}{
+\paragraph{} Paragraph 
+\paragraph{} Paragraph 
+\begin{enumerate}
+\item Numbered Item1
+\item Numbered Item2
+ \end{enumerate}
+.
+.
+.
+.
+.
+.
+.
+.
+
+\chapter{Conclusion}
+\thispagestyle{fancy}{
+\section{Conclusion}
+\paragraph{} Paragraph
+\paragraph{} Paragraph
+\section{Future Scope}
+\begin{itemize}
+\item Item
+\item Item 
+\end{itemize}}
+
+
+\thispagestyle{fancy}{
+\begin{thebibliography}{50}
+\bibitem{Gupta} Prakash C.Gupta. \textsl{"Data Communications"},
+Prentice-Hall of India pvt. ltd.,New Delhi,2002.
+\bibitem{Lin} Shu Lin / Daniel J. Costello,Jr. \textsl{"Error Control Coding:Fundamentals and Applications"},Prentice-Hall, Inc. Englewood Cliffs,New Jersey 07632,1983.
+\bibitem{Haykin} Simon Haykin. \textsl{"Communication Systems"},John Wiley and Sons,Inc. New York,2000.
+\bibitem{Kulkarni}Jayshree S. Nandaniya,Nilesh B. Kalani,Dr.G.R.Kulkarni. \textsl{"Comparative Analysis of Different Channel Coding Techniques"},IRACST – International Journal of Computer Networks and Wireless Communications (IJCNWC), vol.4,No.2,April 2014.
+\bibitem{Vishwajeet} Himanshu Saraswat, Govind Sharma Sudhir Kumar Mishra and Vishwajeet. \textsl{"Performance Evaluation and Comparative Analysis
+of Various Concatenated Error Correcting Codes Using BPSK Modulation for AWGN Channel"},International Journal of Electronics and Communication Engineering.
+ISSN 0974-2166 Volume 5, Number 3 (2012), pp. 235-244,International Research Publication House.
+\bibitem{Bahel} Jagpreet Singh , Dr. Shalini Bahel. \textsl{"Comparative Study of Data Transmission Techniques of Different Block Codes over AWGN Channel using Simulink"},International Journal of Engineering Trends and Technology (IJETT) – Volume 9 Number 12 - Mar 2014.
+\bibitem{Rashmi v} Nagaraj H Nemagoudar, Aruna Rashmi V.
+\textsl{"HDL Implementation of Hamming Code Encoder and Decoder"}, March 2014
+\bibitem{Salehi} Proakis J, Salehi.\textsl{"Fundamental of Communication
+Systems"},International Edition,2004.
+\bibitem{Khan}Mahe Jabeen, Salma Khan. \textsl{"Design of Convolution Encoder and Reconfigurable Viterbi Decoder"},International Journal of Engineering and Science, Vol. 1, Issue 3 (Sept 2012), PP 15-21.
+\bibitem{adnrew} Andrew.W.Moore. \textsl{"Digital Communications 1"},andrew.moore@cl.cam.ac.uk, 2009.
+\bibitem{wa'il}Dr.Wa'il.AH.Hadi,\textsl{"Communication Systems 2"},2008.
+\bibitem{kennedy}George Kennedy, Bernard Davis, S R M Prasanna. \textsl{"Electronic Commiunication Systems"},5e, TMH Plublications,2011.
+\bibitem{john}John G Proakis Masoud Salehi,\textsl{"Digital Communications"},TMH Publications,5e,2008.
+\bibitem{rapparport}Theodore S Rappaport, \textsl{"Wireless Communications –Principles and Practice"},Pearson Publications, 2e 2002.
+\bibitem{simon}Simon Haykin.\textsl{, "Digital communications"},Wiley Publications, 4e 2010.
+\bibitem{john g}[5]	John G Proakis, Masoud Salehi.\textsl{"Contemporary Communication Systems-using Matlab"},2e 2003.
+\bibitem{kumar}P.Sunil Kumar, Dr.M.G.Sumithra and Ms.M.Sarumathi .\textsl{"Performance Comparison of Rayleigh and Rician Fading Channels In QAM Modulation Scheme Using Simulink Environment"},International Journal of Computational Engineering Research, Volume-03, Issue-5.
+\bibitem{verma} Vikas Gupta, Dr. Chanderkant Verma.   \textsl{"Error Detection and Correction: An Introduction"},International Journal of Advanced Research in Computer Science and Software Engineering,Volume 2, Issue 11, November 2012.
+\bibitem{Priti} Priti Shankar.\textsl{"Error Correcting Codes"},Series,Article-Resonance 1997.
+\bibitem{han} Yunghsiang S. Han. \textsl{"Introduction to Binary Convolutional Codes"}.
+\bibitem{nptel}IIT,Kharagpur. \textsl{"Channel Coding"},Module 6, version 2.
+\end{thebibliography}
+}
+
+\end{document}
